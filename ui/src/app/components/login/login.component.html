@@ -1,0 +1,58 @@
+<div class="login-wrapper">
+  <form class="login" clrForm [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="login-header">
+    <div class="actions">
+    </div>
+  </div>
+    <div class="login-body">
+      <section class="title">
+        <div class="welcome">Welcome to the Planets Demo</div>
+        <div class="hint">By Strateknia Software</div>
+      </section>
+      <div class="login-group">
+          <clr-input-container>
+            <label class="clr-sr-only">E-mail</label>
+            <input
+              type="text"
+              autocomplete="email"
+              name="email"
+              clrInput
+              placeholder="Enter e-mail"
+              formControlName="email"
+            />
+            <clr-control-error *clrIfError="'false'">Email Required</clr-control-error>
+          </clr-input-container>
+          <clr-password-container>
+            <label class="clr-sr-only">Code</label>
+            <input
+              type="code"
+              autocomplete="current-code"
+              name="code"
+              clrPassword
+              placeholder="Enter code"
+              formControlName="code"
+            />
+          </clr-password-container>
+          <clr-checkbox-container>
+            <clr-checkbox-wrapper>
+            </clr-checkbox-wrapper>
+          </clr-checkbox-container>
+          <clr-alert [clrAlertType]="'danger'" [hidden]="true">
+            <clr-alert-item>
+              <span class="alert-text">Invalid email or code.</span>
+            </clr-alert-item>
+          </clr-alert>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Log in</button>
+
+      </div>
+    </div>
+    <div class="login-footer">
+      <span class="copyright">2024 Strateknia Software</span>
+      <a href="javascript://">Terms</a>
+      <a href="javascript://">Privacy</a>
+    </div>
+  </form>
+</div>
+
+
+

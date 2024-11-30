@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  gap: var(--clr-login-footer-gap);
+}
+
+.footer .copyright, .footer .link {
+  font-size: var(--cds-alias-typography-caption-font-size);
+  font-weight: var(--cds-alias-typography-caption-font-weight);
+  line-height: var(--cds-alias-typography-caption-line-height);
+  letter-spacing: var(--cds-alias-typography-caption-letter-spacing);
+  color: var(--clr-login-copyright-color);
+}
