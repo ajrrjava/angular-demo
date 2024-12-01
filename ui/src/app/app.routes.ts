@@ -3,6 +3,7 @@ import { DashboardViewComponent } from './components/dashboard-view/dashboard-vi
 import { PlanetsViewComponent } from './components/planets-view/planets-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { EarthquakesComponent } from './components/earthquakes/earthquakes.component';
+import { MapViewComponent } from './components/map-view/map-view.component';
 import { authGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 
@@ -31,6 +32,11 @@ export const routes: Routes = [
     path: 'earthquakes',
     title: 'Earthquakes',
     component: EarthquakesComponent,
+  },
+  {
+    path: 'cps',
+    title: 'CPS Schools test 2012-2013',
+    component: MapViewComponent,
   },
   { path: '**', redirectTo: 'dashboard' }
 ];

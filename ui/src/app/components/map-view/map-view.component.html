@@ -1,0 +1,51 @@
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <a href="dashboard">
+        <cds-icon shape="home"></cds-icon>
+      </a>
+      <span class="demo-title">Example using Chicago Public Schools API, OpenStreetMaps and Leaflet</span>
+    </div>
+  </header>
+  <div class="content-container">
+    <div class="content-area" cds-layout="m-t:md">
+      <div class="clr-row">
+        <div class="clr-col-2">
+          <form clrForm [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+            <div>
+              <clr-combobox-container>
+                <label>Filter by:</label>
+                <clr-combobox formControlName="filterBy" name="filterBy" required>
+                  <clr-options>
+                    <clr-option *clrOptionItems="let v of variables; field: 'label'" [clrValue]="v">
+                      <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon>
+                     {{ v.label }}
+                    </clr-option>
+                  </clr-options>
+                </clr-combobox>
+                <clr-control-error *clrIfError="'required'">This is a required field</clr-control-error>
+              </clr-combobox-container>
+              <clr-combobox-container>
+                <label>Range:</label>
+                <clr-combobox formControlName="filterRange" name="filterRange" required>
+                  <clr-options>
+                    <clr-option *clrOptionItems="let r of ranges; field: 'label'" [clrValue]="r">
+                     {{ r.label }}
+                    </clr-option>
+                  </clr-options>
+                </clr-combobox>
+                <clr-control-error *clrIfError="'required'">This is a required field</clr-control-error>
+              </clr-combobox-container>
+            </div>
+            <div style="margin-top: 40px;">
+              <input type="submit" class="btn btn-primary" value="Search" [disabled]="!filterForm.valid"/>
+            </div>
+          </form>
+        </div>
+        <div class="clr-col">
+          <map-block [mapConfig]="mapConfig" [data]="data"></map-block>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

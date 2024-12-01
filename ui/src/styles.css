@@ -3,3 +3,16 @@
 @import '@cds/core/styles/theme.dark.min.css';
 @import '@clr/ui/clr-ui.min.css';
 
+
+.demo-title {
+    color: var(--clr-header-font-color);
+    font-family: var(--clr-header-title-font-family);
+    font-size: var(--cds-alias-typography-section-font-size);
+    font-weight: var(--clr-header-title-font-weight);
+    line-height: var(--cds-alias-typography-section-line-height);
+    letter-spacing: var(--cds-alias-typography-section-letter-spacing);
+    margin: var(--cds-global-space-8) 0 0 var(--cds-global-space-8);
+        text-overflow: ellipsis;
+        overflow: hidden;
+}
+
