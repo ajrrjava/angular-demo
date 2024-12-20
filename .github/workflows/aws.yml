@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+
+env:
+  DIST_NAME: 'Dashboard'
+  S3BUCKET: 'dashboard-angular-project'
+
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
@@ -13,12 +18,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18.x, 20.x, 22.x ]
+        node-version: [ 20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    # Step 1
     - name: Checkout
       uses: actions/checkout@v4
+
+    # Step 2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4 #this installs node and npm for us
       with:
@@ -31,15 +39,31 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    # Step 3
     - name: Build
       run: |
         npm install
+        npm update
         npm run-script build
+    # Step 4
+    - name: Zip Angular distribution
+      run: |
+        rm -rf ~/${{ env.DIST_NAME }}.zip
+        (cd ~/work/angular-demo/angular-demo/ui/dist/ui/browser; zip -r ~/${{ env.DIST_NAME }}.zip ./)
+        (cd  ~/work/angular-demo/angular-demo; zip -u ~/${{ env.DIST_NAME }}.zip appspec.yml)
+    #    zip -r ~/${{ env.DIST_NAME }}.zip ~/work/angular-demo/angular-demo/ui/dist/ui/browser/ ~/work/angular-demo/angular-demo/appspec.yml
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+    - name: Upload distribution to S3
+      run: aws s3 cp ~/${{ env.DIST_NAME }}.zip s3://${{ env.S3BUCKET }}/
 
   continuous-deployment:
     runs-on: ubuntu-latest
     needs: [continuous-integration]
-    if: github.ref == 'refs/heads/main'
     steps:
      # Step 1
       - name: Configure AWS credentials
@@ -56,4 +80,4 @@ jobs:
             --application-name Dashboard \
             --deployment-group-name demo-production \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+            --s3-location bucket=dashboard-angular-project,bundleType=zip,key=Dashboard.zip

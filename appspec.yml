@@ -1,5 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /ui/dist/ui/browser
-    destination: /var/www/html/dashboard
+  - source: .
+    destination: /var/www/html/dashboard/
+    file_exists_behavior: OVERWRITE
+
