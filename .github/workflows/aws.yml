@@ -49,9 +49,12 @@ jobs:
     - name: Zip Angular distribution
       run: |
         rm -rf ~/${{ env.DIST_NAME }}.zip
-        (cd ~/work/angular-demo/angular-demo/ui/dist/ui/browser; zip -r ~/${{ env.DIST_NAME }}.zip ./)
-        (cd  ~/work/angular-demo/angular-demo; zip -u ~/${{ env.DIST_NAME }}.zip appspec.yml)
-    #    zip -r ~/${{ env.DIST_NAME }}.zip ~/work/angular-demo/angular-demo/ui/dist/ui/browser/ ~/work/angular-demo/angular-demo/appspec.yml
+        mkdir distribution
+        cp -r ~/work/angular-demo/angular-demo/ui/dist/ui/browser/. distribution 
+        zip -r ~/${{ env.DIST_NAME }}.zip ./distribution
+        (cd ~/work/angular-demo/angular-demo; zip -u ~/${{ env.DIST_NAME }}.zip appspec.yml)
+        (cd ~/work/angular-demo/angular-demo; zip -ur ~/${{ env.DIST_NAME }}.zip ansible/)
+        (cd ~/work/angular-demo/angular-demo; zip -ur ~/${{ env.DIST_NAME }}.zip scripts/)
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:

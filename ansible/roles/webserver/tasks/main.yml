@@ -1,0 +1,30 @@
+---
+- name: ensure nginx is at the latest version
+  apt: name=nginx state=latest
+  remote_user: ubuntu
+  become: yes
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+  remote_user: ubuntu
+  become: yes
+- name: copy the nginx config file and restart nginx
+  copy:
+    src: files/static_site.cfg
+    dest: /etc/nginx/sites-available/static_site.cfg
+  remote_user: ubuntu
+  become: yes
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/static_site.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  remote_user: ubuntu
+  become: yes
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+  remote_user: ubuntu
+  become: yes

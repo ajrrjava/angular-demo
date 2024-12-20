@@ -1,0 +1,6 @@
+---
+- name: ensure nginx is at the latest version
+  apt: name=nginx state=latest
+  remote_user: ubuntu
+  become: yes
+  become_user: ubuntu
