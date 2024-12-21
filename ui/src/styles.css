@@ -12,7 +12,7 @@
     line-height: var(--cds-alias-typography-section-line-height);
     letter-spacing: var(--cds-alias-typography-section-letter-spacing);
     margin: var(--cds-global-space-8) 0 0 var(--cds-global-space-8);
-        text-overflow: ellipsis;
-        overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
