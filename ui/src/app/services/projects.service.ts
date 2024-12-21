@@ -14,6 +14,7 @@ export interface Project {
   providedIn: 'root'
 })
 export class ProjectsService {
+  private host: string = "http://52.21.217.42";
 
   getProjects(): Project[] {
 
@@ -60,7 +61,7 @@ export class ProjectsService {
             theme: "Angular with Clarity",
             description : "Dashboard with projects",
             technologies : ["Angular"],
-            url : "http://54.209.101.165/dashboard",
+            url : "${host}/dashboard",
             github : "https://github.com/ajrrjava/angular-demo",
         },
         {
@@ -69,7 +70,7 @@ export class ProjectsService {
             theme: "Chicago Public Schools ",
             description : "Simple application that displays Chicago Public Schools in a map based on criteria from the 2021 Progress Report",
             technologies : ["Angular", "RxJs", "OpenStreetMap"],
-            url : "http://54.209.101.165/cps",
+            url : "${host}/cps",
             github : "https://github.com/ajrrjava/angular-demo",
         },
         {
