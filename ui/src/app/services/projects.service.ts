@@ -14,8 +14,6 @@ export interface Project {
   providedIn: 'root'
 })
 export class ProjectsService {
-  private host: string = "http://52.21.217.42";
-
   getProjects(): Project[] {
 
     return [
@@ -69,8 +67,8 @@ export class ProjectsService {
             icon : "images/angular.png",
             theme: "Angular with Clarity",
             description : "Dashboard with projects",
-            technologies : ["Angular", "Github Actions", "AWS CodeDeploy". "Clarity Design"],
-            url : "${host}/dashboard",
+            technologies : ["Angular", "Github Actions", "AWS CodeDeploy", "Clarity Design"],
+            url : "http://www.stratekniaconsulting.com/dashboard",
             github : "https://github.com/ajrrjava/angular-demo",
         },
         {
@@ -79,8 +77,26 @@ export class ProjectsService {
             theme: "Chicago Public Schools ",
             description : "Simple application that displays Chicago Public Schools in a map based on criteria from the 2021 Progress Report",
             technologies : ["Angular", "RxJs", "OpenStreetMap"],
-            url : "${host}/cps",
+            url : "http://www.stratekniaconsulting.com/cps",
             github : "https://github.com/ajrrjava/angular-demo",
+        },
+        {
+            name : "NextJs Demo",
+            icon : "images/nextjs.png",
+            theme: "",
+            description : "Description and project is coming soon!",
+            technologies : ["NextJs", "HeroUI", "Spring Boot", "Drools", "Docker"],
+            url : "",
+            github : "https://github.com/ajrrjava/project-evaluation",
+        },
+        {
+            name : "Multi-technologies Demo",
+            icon : "images/java.png",
+            theme: "Market Research",
+            description : "This project integrates multiple technologies to assemble an application that uses real data with a Market Research methodology that can be used to determine the market size. The demo uses real data from Mexico's Population Census and allows to answer questions such as 'How big is the market for a new tea beverage?''",
+            technologies : ["Java", "JavaFX", "React", "Spring Boot", "Docker"],
+            url : "",
+            github : "https://github.com/ajrrjava/market-estimation",
         },
         {
             name : "React",
