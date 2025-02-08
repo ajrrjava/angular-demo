@@ -9,12 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/admin" />
-            <option value="$PROJECT_DIR$/common" />
-            <option value="$PROJECT_DIR$/database" />
-            <option value="$PROJECT_DIR$/operations" />
-            <option value="$PROJECT_DIR$/schema" />
-            <option value="$PROJECT_DIR$/server" />
           </set>
         </option>
       </GradleProjectSettings>
